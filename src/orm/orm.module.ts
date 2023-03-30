@@ -1,5 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Booking } from './entities/booking.entity';
+import { Flight } from './entities/flight.entity';
+import { Station } from './entities/station.entity';
 import { User } from './entities/user.entity';
 
 @Module({
@@ -11,7 +14,7 @@ import { User } from './entities/user.entity';
       username: 'root',
       password: '',
       database: 'flights-js',
-      entities: [User]
+      entities: [User, Station, Flight, Booking]
     })
   ]
 })

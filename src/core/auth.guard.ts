@@ -3,7 +3,7 @@ import { CanActivate, createParamDecorator, ExecutionContext, Inject, Injectable
 import { UserService } from './user/user.service';
 
 @Injectable()
-export class BearerExtractor implements CanActivate {
+export class Bearer implements CanActivate {
   @Inject()
   private readonly users: UserService;
 

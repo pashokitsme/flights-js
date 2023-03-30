@@ -1,8 +1,8 @@
 import { Body, Controller, Get, HttpCode, Inject, Post, UnauthorizedException, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { User } from 'src/orm/entities/user.entity';
-import { BearerExtractor, ExtractUser } from '../auth.guard';
-import { LoginRequestDto, LoginResponseDto, RegisterRequestDto, UserDto } from './user.dto';
+import { Bearer, ExtractUser } from '../auth.guard';
+import { LoginRequestDto, RegisterRequestDto, UserDto } from './user.dto';
 import { UserService } from './user.service';
 
 @Controller()
@@ -31,9 +31,9 @@ export class UserController {
   }
 
   @Get('user')
-  @UseGuards(BearerExtractor)
+  @UseGuards(Bearer)
   @HttpCode(200)
   me(@ExtractUser() user: User): UserDto {
-    return UserDto.fromModel(user)
+    return UserDto.from(user)
   }
 }
