@@ -10,11 +10,11 @@ export class Flight extends BaseEntity {
   flight_code: string;
 
   @OneToOne(() => Station)
-  @JoinColumn()
+  @JoinColumn({ name: "from_id" })
   from: Station;
 
   @OneToOne(() => Station)
-  @JoinColumn()
+  @JoinColumn({ name: "to_id" })
   to: Station;
 
   @OneToMany(() => Booking, (booking) => booking.from)
@@ -23,10 +23,10 @@ export class Flight extends BaseEntity {
   @OneToMany(() => Booking, (booking) => booking.to)
   incoming: Booking[];
 
-  @Column()
+  @Column("time")
   time_from: Date;
 
-  @Column()
+  @Column("time")
   time_to: Date;
 
   @Column()
